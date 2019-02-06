@@ -7,9 +7,8 @@ mongoose.connect('mongodb://gooweek:admin123@ds221435.mlab.com:21435/goweek-mayc
   useNewUrlParser: true
 })
 
-app.get('/', (req, res) => {
-  return res.send('hello world')
-})
+app.use(express.json())
+app.use(require('./routes'))
 
 app.listen(3000,  () => {
   console.log(`server run on port 3000`)
