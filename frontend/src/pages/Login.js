@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import TweeterLogo from '../twitter.svg'
+import TwitterLogo from '../twitter.svg'
 import './Login.css'
 
 class Login extends Component {
@@ -26,7 +26,7 @@ class Login extends Component {
   render() {
     return (
       <div className='login-wrapper'>
-        <img src={TweeterLogo} alt='Tweetergo' />
+        <img src={TwitterLogo} alt='Tweetergo' />
         <form onSubmit={this.handleSubmit}>
           <input
             placeholder='Nome de usuário'
