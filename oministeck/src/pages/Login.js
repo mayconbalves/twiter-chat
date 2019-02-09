@@ -15,6 +15,13 @@ class Login extends Component {
     username: ''
   }
 
+  async componentDidMount() {
+    const username = await AsyncStorage.getItem('@OminiStack:username')
+
+    if (username) {
+      return this.props.navigation.navigate('App')
+    }
+  }
   handleSubmit =  async () => {
     const { username } = this.state
 
@@ -22,8 +29,8 @@ class Login extends Component {
       return
     }
 
-    await AsyncStorage.setItem('@GoOminiStack:username', username)
-    this.props.navigation.navigate('Timeline')
+    await AsyncStorage.setItem('@OminiStack:username', username)
+    this.props.navigation.navigate('App')
   }
 
 
