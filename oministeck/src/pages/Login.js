@@ -5,24 +5,48 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Text
+  Text,
+  AsyncStorage
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 class Login extends Component {
+  state = {
+    username: ''
+  }
+
+  handleSubmit =  async () => {
+    const { username } = this.state
+
+    if (!username.length) {
+      return
+    }
+
+    await AsyncStorage.setItem('@GoOminiStack:username', username)
+    this.props.navigation.navigate('Timeline')
+  }
+
+
+  handleInputChange = username => {
+    this.setState({ username })
+  }
   render() {
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <View style={styles.content}>
-          <Icon name='twitter' size={64} color='#4BB0EE' />
-
+          <View>
+            <Icon name='twitter' size={64} color='#4BB0EE' />
+          </View>
           <TextInput
             style={styles.input}
             placeholder='Nome de usuario'
             returnKeyType='send'
+            onChangeText={this.handleInputChange}
+            onSubmitEditing={this.handleSubmit}
+            value={this.state.username}
           />
 
-          <TouchableOpacity style={styles.button} onPress={() => {}}>
+          <TouchableOpacity style={styles.button} onPress={this.handleSubmit}>
             <Text style={styles.buttonText}>Entrar</Text>
           </TouchableOpacity>
 
